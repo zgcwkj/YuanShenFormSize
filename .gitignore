@@ -2,6 +2,6 @@
 # 此 .gitignore 文件已由 Microsoft(R) Visual Studio 自动创建。
 ################################################################################
 
-/YuanShenFormSize/obj/Debug
-/YuanShenFormSize/bin/Debug
-/.vs/YuanShenFormSize/v16
+/YuanShenFormSize/obj
+/YuanShenFormSize/bin
+/.vs
