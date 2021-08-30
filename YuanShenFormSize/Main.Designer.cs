@@ -30,6 +30,7 @@ namespace YuanShenFormSize
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.Btn_fullScreen = new System.Windows.Forms.Button();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.Btn_Show1080P = new System.Windows.Forms.Button();
@@ -38,7 +39,7 @@ namespace YuanShenFormSize
             this.Text_Width = new System.Windows.Forms.TextBox();
             this.Txt_ShowType = new System.Windows.Forms.Label();
             this.Rb_ShowForm = new System.Windows.Forms.RadioButton();
-            this.Rb_fullScreen = new System.Windows.Forms.RadioButton();
+            this.Rb_FullScreen = new System.Windows.Forms.RadioButton();
             this.Txt_Width = new System.Windows.Forms.Label();
             this.Txt_Height = new System.Windows.Forms.Label();
             this.Text_Height = new System.Windows.Forms.TextBox();
@@ -65,7 +66,6 @@ namespace YuanShenFormSize
             this.Btn_Show1080P.Size = new System.Drawing.Size(83, 48);
             this.Btn_Show1080P.TabIndex = 8;
             this.Btn_Show1080P.Text = "1080P";
-            this.toolTip.SetToolTip(this.Btn_Show1080P, "全屏显示，像素最大化");
             this.Btn_Show1080P.UseVisualStyleBackColor = true;
             this.Btn_Show1080P.Click += new System.EventHandler(this.Btn_Show1080P_Click);
             // 
@@ -77,19 +77,18 @@ namespace YuanShenFormSize
             this.Btn_Show720P.Size = new System.Drawing.Size(69, 48);
             this.Btn_Show720P.TabIndex = 9;
             this.Btn_Show720P.Text = "720P";
-            this.toolTip.SetToolTip(this.Btn_Show720P, "全屏显示，像素最大化");
             this.Btn_Show720P.UseVisualStyleBackColor = true;
             this.Btn_Show720P.Click += new System.EventHandler(this.Btn_Show720P_Click);
             // 
             // Btn_Ok
             // 
             this.Btn_Ok.Font = new System.Drawing.Font("宋体", 12F);
-            this.Btn_Ok.Location = new System.Drawing.Point(144, 149);
+            this.Btn_Ok.Location = new System.Drawing.Point(12, 142);
             this.Btn_Ok.Name = "Btn_Ok";
-            this.Btn_Ok.Size = new System.Drawing.Size(142, 48);
+            this.Btn_Ok.Size = new System.Drawing.Size(142, 49);
             this.Btn_Ok.TabIndex = 10;
             this.Btn_Ok.Text = "确定修改";
-            this.toolTip.SetToolTip(this.Btn_Ok, "全屏显示，像素最大化");
+            this.toolTip.SetToolTip(this.Btn_Ok, "by zgcwkj");
             this.Btn_Ok.UseVisualStyleBackColor = true;
             this.Btn_Ok.Click += new System.EventHandler(this.Btn_Ok_Click);
             // 
@@ -97,7 +96,7 @@ namespace YuanShenFormSize
             // 
             this.Text_Width.Location = new System.Drawing.Point(87, 59);
             this.Text_Width.Name = "Text_Width";
-            this.Text_Width.Size = new System.Drawing.Size(198, 25);
+            this.Text_Width.Size = new System.Drawing.Size(195, 25);
             this.Text_Width.TabIndex = 5;
             // 
             // Txt_ShowType
@@ -121,18 +120,18 @@ namespace YuanShenFormSize
             this.Rb_ShowForm.Text = "窗体";
             this.Rb_ShowForm.UseVisualStyleBackColor = true;
             // 
-            // Rb_fullScreen
+            // Rb_FullScreen
             // 
-            this.Rb_fullScreen.AutoSize = true;
-            this.Rb_fullScreen.Checked = true;
-            this.Rb_fullScreen.Font = new System.Drawing.Font("宋体", 12F);
-            this.Rb_fullScreen.Location = new System.Drawing.Point(212, 19);
-            this.Rb_fullScreen.Name = "Rb_fullScreen";
-            this.Rb_fullScreen.Size = new System.Drawing.Size(70, 24);
-            this.Rb_fullScreen.TabIndex = 2;
-            this.Rb_fullScreen.TabStop = true;
-            this.Rb_fullScreen.Text = "全屏";
-            this.Rb_fullScreen.UseVisualStyleBackColor = true;
+            this.Rb_FullScreen.AutoSize = true;
+            this.Rb_FullScreen.Checked = true;
+            this.Rb_FullScreen.Font = new System.Drawing.Font("宋体", 12F);
+            this.Rb_FullScreen.Location = new System.Drawing.Point(212, 19);
+            this.Rb_FullScreen.Name = "Rb_FullScreen";
+            this.Rb_FullScreen.Size = new System.Drawing.Size(70, 24);
+            this.Rb_FullScreen.TabIndex = 2;
+            this.Rb_FullScreen.TabStop = true;
+            this.Rb_FullScreen.Text = "全屏";
+            this.Rb_FullScreen.UseVisualStyleBackColor = true;
             // 
             // Txt_Width
             // 
@@ -158,24 +157,24 @@ namespace YuanShenFormSize
             // 
             this.Text_Height.Location = new System.Drawing.Point(88, 102);
             this.Text_Height.Name = "Text_Height";
-            this.Text_Height.Size = new System.Drawing.Size(198, 25);
+            this.Text_Height.Size = new System.Drawing.Size(194, 25);
             this.Text_Height.TabIndex = 7;
             // 
             // Txt_Info
             // 
             this.Txt_Info.AutoSize = true;
-            this.Txt_Info.ForeColor = System.Drawing.Color.Blue;
-            this.Txt_Info.Location = new System.Drawing.Point(369, 182);
+            this.Txt_Info.ForeColor = System.Drawing.Color.Red;
+            this.Txt_Info.Location = new System.Drawing.Point(186, 176);
             this.Txt_Info.Name = "Txt_Info";
-            this.Txt_Info.Size = new System.Drawing.Size(79, 15);
+            this.Txt_Info.Size = new System.Drawing.Size(262, 15);
             this.Txt_Info.TabIndex = 11;
-            this.Txt_Info.Text = "by zgcwkj";
+            this.Txt_Info.Text = "如果无法修改，请以管理员身份运行！";
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(468, 209);
+            this.ClientSize = new System.Drawing.Size(468, 194);
             this.Controls.Add(this.Txt_Info);
             this.Controls.Add(this.Btn_Ok);
             this.Controls.Add(this.Btn_Show720P);
@@ -183,15 +182,16 @@ namespace YuanShenFormSize
             this.Controls.Add(this.Text_Height);
             this.Controls.Add(this.Txt_Height);
             this.Controls.Add(this.Txt_Width);
-            this.Controls.Add(this.Rb_fullScreen);
+            this.Controls.Add(this.Rb_FullScreen);
             this.Controls.Add(this.Rb_ShowForm);
             this.Controls.Add(this.Txt_ShowType);
             this.Controls.Add(this.Text_Width);
             this.Controls.Add(this.Btn_fullScreen);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(486, 256);
+            this.MaximumSize = new System.Drawing.Size(486, 241);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(486, 256);
+            this.MinimumSize = new System.Drawing.Size(486, 241);
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "原神窗体大小";
@@ -207,7 +207,7 @@ namespace YuanShenFormSize
         private System.Windows.Forms.TextBox Text_Width;
         private System.Windows.Forms.Label Txt_ShowType;
         private System.Windows.Forms.RadioButton Rb_ShowForm;
-        private System.Windows.Forms.RadioButton Rb_fullScreen;
+        private System.Windows.Forms.RadioButton Rb_FullScreen;
         private System.Windows.Forms.Label Txt_Width;
         private System.Windows.Forms.Label Txt_Height;
         private System.Windows.Forms.TextBox Text_Height;

@@ -20,16 +20,6 @@ namespace YuanShenFormSize
         }
 
         /// <summary>
-        /// 确定修改
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Btn_Ok_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        /// <summary>
         /// 获取注册表的对象
         /// </summary>
         /// <returns></returns>
@@ -38,6 +28,12 @@ namespace YuanShenFormSize
             string regeditPath = @"SOFTWARE\miHoYo\原神\";
             RegistryKey key = Registry.CurrentUser;
             RegistryKey software = key.OpenSubKey(regeditPath, true);
+            if (software == null)
+            {
+                MessageBox.Show("未安装原神游戏是无法运行的呢！", "错误");
+                //Application.Exit();
+                Environment.Exit(Environment.ExitCode);
+            }
             return software;
         }
 
@@ -48,6 +44,8 @@ namespace YuanShenFormSize
         {
             RegistryKey software = GetRegistryKey();
             var valueNames = software.GetValueNames();
+
+            //查找显示类型的值
             var modeKey = valueNames.Where(W => W.Contains("Screenmanager Is Fullscreen mode_")).FirstOrDefault();
             if (string.IsNullOrEmpty(modeKey))
             {
@@ -55,24 +53,29 @@ namespace YuanShenFormSize
                 this.Close();
             }
             Txt_ShowType.Tag = modeKey;
-            Rb_fullScreen.Checked = software.GetValue(Txt_ShowType.Tag.ToString()).ToString() == "1";
-            Rb_ShowForm.Checked = software.GetValue(Txt_ShowType.Tag.ToString()).ToString() == "0";
-            var heightKey = valueNames.Where(W => W.Contains("Screenmanager Resolution Height_")).FirstOrDefault();
-            if (string.IsNullOrEmpty(heightKey))
-            {
-                MessageBox.Show("未找到显示类型", "错误");
-                this.Close();
-            }
-            Txt_Height.Tag = heightKey;
-            Text_Height.Text = software.GetValue(Txt_Height.Tag.ToString()).ToString();
+            var showType = software.GetValue(Txt_ShowType.Tag.ToString(), "1", RegistryValueOptions.None).ToString();
+            Rb_FullScreen.Checked = showType == "1";
+            Rb_ShowForm.Checked = showType == "0";
+
+            //查找宽度的值
             var widthKey = valueNames.Where(W => W.Contains("Screenmanager Resolution Width_")).FirstOrDefault();
             if (string.IsNullOrEmpty(widthKey))
             {
                 MessageBox.Show("未找到显示类型", "错误");
                 this.Close();
             }
-            Txt_Width.Tag = widthKey;
-            Text_Width.Text = software.GetValue(Txt_Width.Tag.ToString()).ToString();
+            Text_Width.Tag = widthKey;
+            Text_Width.Text = software.GetValue(Text_Width.Tag.ToString(), "1920", RegistryValueOptions.None).ToString();
+
+            //查找高度的值
+            var heightKey = valueNames.Where(W => W.Contains("Screenmanager Resolution Height_")).FirstOrDefault();
+            if (string.IsNullOrEmpty(heightKey))
+            {
+                MessageBox.Show("未找到显示类型", "错误");
+                this.Close();
+            }
+            Text_Height.Tag = heightKey;
+            Text_Height.Text = software.GetValue(Text_Height.Tag.ToString(), "1080", RegistryValueOptions.None).ToString();
         }
 
         private void Btn_fullScreen_Click(object sender, EventArgs e)
@@ -83,6 +86,7 @@ namespace YuanShenFormSize
             size.Height = GetDeviceCaps(hdc, DESKTOPVERTRES);
             ReleaseDC(IntPtr.Zero, hdc);
 
+            Rb_FullScreen.Checked = true;
             Text_Width.Text = size.Width.ToString();
             Text_Height.Text = size.Height.ToString();
         }
@@ -97,6 +101,27 @@ namespace YuanShenFormSize
         {
             Text_Width.Text = "1280";
             Text_Height.Text = "720";
+        }
+
+        /// <summary>
+        /// 确定修改
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Btn_Ok_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                RegistryKey software = GetRegistryKey();
+                software.SetValue(Txt_ShowType.Tag.ToString(), Rb_FullScreen.Checked ? "1" : "0", RegistryValueKind.DWord);
+                software.SetValue(Text_Width.Tag.ToString(), Text_Width.Text, RegistryValueKind.DWord);
+                software.SetValue(Text_Height.Tag.ToString(), Text_Height.Text, RegistryValueKind.DWord);
+                MessageBox.Show("修改完成");
+            }
+            catch
+            {
+                MessageBox.Show("请以管理员身份运行此程序！");
+            }
         }
 
         /// <summary>
